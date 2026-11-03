@@ -1,0 +1,37 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #0a0a0f; color: #f5f5f5; font-family: system-ui, sans-serif; padding: 60px; }
+    h2 { font-size: 56px; color: #3b82f6; margin-bottom: 40px; opacity: 0; }
+    table { width: 100%; max-width: 1200px; border-collapse: collapse; }
+    th, td { padding: 16px 20px; text-align: left; border-bottom: 1px solid #2a2a3a; font-size: 22px; }
+    th { color: #3b82f6; font-weight: 600; }
+    .highlight { color: #10b981; font-weight: 700; }
+    .total-row { border-top: 2px solid #3b82f6; }
+    .total-row td { font-weight: 700; font-size: 24px; }
+    tr { opacity: 0; transform: translateY(10px); }
+    .note { margin-top: 30px; font-size: 20px; color: #a0a0a0; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="costs" data-width="1920" data-height="1080">
+    <h2>Cost Comparison (Monthly)</h2>
+    <table>
+      <tr><th>Role</th><th>Human (AT)</th><th>AI (Local)</th><th>Savings</th></tr>
+      <tr><td>Receptionist</td><td>€2,500</td><td class="highlight">€0</td><td class="highlight">100%</td></tr>
+      <tr><td>HR Assistant</td><td>€3,000</td><td class="highlight">€0</td><td class="highlight">100%</td></tr>
+      <tr><td>Bookkeeper</td><td>€2,800</td><td class="highlight">€0</td><td class="highlight">100%</td></tr>
+      <tr><td>Customer Support</td><td>€2,500</td><td class="highlight">€0</td><td class="highlight">100%</td></tr>
+      <tr><td>Quote Generator</td><td>€2,200</td><td class="highlight">€0</td><td class="highlight">100%</td></tr>
+      <tr class="total-row"><td>Total (5 roles)</td><td>€13,000</td><td class="highlight">€0</td><td class="highlight">100%</td></tr>
+    </table>
+    <div class="note">Hardware: one-time ~€2,000 (RTX 4060 8GB). Electricity: ~€20/month. Break-even: under 1 month.</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("h2", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.2);
+    const rows = document.querySelectorAll("tr");
+    rows.forEach((el, i) => {
+      tl.fromTo(el, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 0.6 + i * 0.15);
+    });
+    tl.fromTo(".note", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 2.0);
+    window.__timelines["costs"] = tl;
+  </script>
+</template>
