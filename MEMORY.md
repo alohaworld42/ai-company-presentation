@@ -3,12 +3,8 @@
 ## Workspace Rules
 Read C:\Users\admin\Desktop\Projects\AGENTS.md for global workspace rules.
 
-## Project
-No STATUS.md or README.md found. Explore the codebase.
-
-## User Preferences
-- Autonomous agent: works in background, presents results
-- No manual commands: agent runs npm/git/docker/etc.
-- Push after every change
-- Caveman mode: terse, no fluff
-- All projects should be 'marktreif ready to sell'
+## Lessons Learned
+- Write tool appends trailing quote in some cases - always verify file content after write
+- PowerShell: use Select-String instead of grep, use node/python for file edits
+- CRLF/LF issues: normalize to LF before hashing
+- euro sign is multi-byte (0xE2 0x82 0xAC) - string matching fails, use regex
